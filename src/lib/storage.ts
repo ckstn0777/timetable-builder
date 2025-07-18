@@ -1,4 +1,4 @@
-import type { Course, ScheduledCourse, TimetableSettings } from "@/App";
+import type { Course, ScheduledCourse, TimetableSettings } from "@/types";
 
 const STORAGE_KEY = "timetable_data";
 const CURRENT_VERSION = "1.0.0";
@@ -120,7 +120,7 @@ export const importFromFile = (file: File): Promise<TimetableData> => {
       }
     };
 
-    reader.onerror = (event) => {
+    reader.onerror = (_event) => {
       reject(new Error("파일을 읽을 수 없습니다."));
     };
 

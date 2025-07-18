@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDrag } from "react-dnd";
 import { Move, X } from "lucide-react";
 import type { ScheduledCourse, Course } from "@/types";
@@ -80,6 +80,13 @@ export function ScheduledCourseBlock({
     document.addEventListener("mouseup", handleMouseUp);
   };
 
+  const setDragRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      dragRef(node);
+    },
+    [dragRef]
+  );
+
   return (
     <div
       data-schedule-block
@@ -108,7 +115,7 @@ export function ScheduledCourseBlock({
       )}
 
       {/* 메인 콘텐츠 영역 - 드래그 가능 */}
-      <div ref={dragRef} className="p-2 h-full cursor-move">
+      <div ref={setDragRef} className="p-2 h-full cursor-move">
         {/* 강의 정보 */}
         <div className="flex justify-between items-start mb-0.5">
           <div className="flex-1 min-w-0">

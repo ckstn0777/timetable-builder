@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 import { Button } from "./ui/button";
 
 import type { Course } from "@/types";
+import { useCallback } from "react";
 
 interface CourseItemProps {
   course: Course;
@@ -18,9 +19,16 @@ export function CourseItem({ course, onDelete }: CourseItemProps) {
     }),
   });
 
+  const setDragRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      dragRef(node);
+    },
+    [dragRef]
+  );
+
   return (
     <div
-      ref={dragRef}
+      ref={setDragRef}
       className={`
         flex items-center gap-3 p-3 border rounded-lg cursor-move
         ${isDragging ? "opacity-50" : "hover:shadow-md"}

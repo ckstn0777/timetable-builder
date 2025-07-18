@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useDrop } from "react-dnd";
 
 interface TimetableCellProps {
@@ -39,9 +40,16 @@ export function TimetableCell({
     }),
   });
 
+  const setDropRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      dropRef(node);
+    },
+    [dropRef]
+  );
+
   return (
     <div
-      ref={dropRef}
+      ref={setDropRef}
       className={`
         relative border border-gray-300 h-12 bg-white
         ${isOver ? "bg-blue-50 border-blue-300" : "hover:bg-gray-50"}
