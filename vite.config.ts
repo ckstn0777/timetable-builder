@@ -6,6 +6,7 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: "/timetable-maker/", // GitHub Pages용 base URL 추가
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
